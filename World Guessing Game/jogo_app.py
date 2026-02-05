@@ -23,10 +23,7 @@ class JogoApp(tk.Tk):
 
         self.criar_widgets()
         self.nova_rodada()
-
-    # ======================
-    # Interface
-    # ======================
+        
     def criar_widgets(self):
 
         tk.Label(self, text="Capital:", font=("Arial", 14)).pack(pady=5)
@@ -44,8 +41,7 @@ class JogoApp(tk.Tk):
 
         tk.Button(self, text="Chutar", command=self.processar_palpite)\
             .pack(pady=10)
-
-        # ===== Treeview Ranking =====
+        
         colunas = ("Jogador", "Pontos", "Data")
 
         self.tree = ttk.Treeview(self, columns=colunas, show="headings")
@@ -58,9 +54,6 @@ class JogoApp(tk.Tk):
 
         self.atualizar_ranking()
 
-    # ======================
-    # Lógica do jogo
-    # ======================
     def nova_rodada(self):
         self.pais_atual = self.api.obter_pais_aleatorio()
 
@@ -108,10 +101,7 @@ class JogoApp(tk.Tk):
                 f"O país correto era {self.pais_atual['nome']}"
             )
             self.nova_rodada()
-
-    # ======================
-    # Ranking
-    # ======================
+            
     def atualizar_ranking(self):
 
         for item in self.tree.get_children():
@@ -121,3 +111,4 @@ class JogoApp(tk.Tk):
 
         for linha in dados:
             self.tree.insert("", tk.END, values=linha)
+
